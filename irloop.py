@@ -19,8 +19,10 @@ def main_thread():
         if ir_running:
             ir.freeze_var_buffer_latest()
             replay_position_from_end = ir['ReplayFrameNumEnd']
-            if replay_position_from_end == 1:
-                ir.replay_set_play_position()
+            print("replay_position_from_end = " + str(replay_position_from_end))
+            if replay_position_from_end <= 1:
+                ir.replay_search(0)
+                time.sleep(1)
                 ir.replay_set_play_speed(1)
         time.sleep(1) # update once per second
 
